@@ -12,3 +12,42 @@ function loadView(view) {
     return () => import(`@/views/${view}`);
   }
 }
+
+
+
+/**
+ * 空白首页菜单
+ */
+export function getTemplateSettings() {
+  var menu = [
+    {
+      name: "BaseInfo",
+      path: "",
+      hidden: false,
+      redirect: "index",
+      component: "Layout",
+      alwaysShow: true,
+      meta: {
+        title: "基本信息",
+        icon: "dashboard",
+        noCache: false,
+        link: null,
+      },
+      children: [
+        {
+          name: "HelloWorld",
+          path: "index",
+          hidden: false,
+          component: "index",
+          meta: {
+            title: "你好",
+            icon: "clipboard",
+            noCache: false,
+            link: null,
+          },
+        }
+      ],
+    },
+  ];
+  return filterRouters(menu, loadView);
+}
